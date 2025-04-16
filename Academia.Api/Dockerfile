@@ -26,10 +26,7 @@ WORKDIR /app
 # Copiar os arquivos publicados da etapa de build
 COPY --from=build /out .
 
-# Copiar o certificado SSL para o container
-COPY ../../https/aspnetapp.pfx /https/aspnetapp.pfx
-
-# Configurar HTTPS
+# Configurar HTTPS (o certificado será montado como volume pelo docker-compose)
 ENV ASPNETCORE_URLS="https://+:7162"
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password=12345

@@ -1,40 +1,40 @@
-services:  
-  tarefa5-api:  
-    build:  
-      context: ./Tarefa5 integrando Academia  
-      dockerfile: Dockerfile  
-    container_name: tarefa5-container-compose  
-    ports:  
-      - "7213:7213"  
-    environment:  
-      - ASPNETCORE_URLS=https://+:7213  
-      - ASPNETCORE_ENVIRONMENT=Docker  
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx  
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourPassword  
-    volumes:  
-      - C:/Users/Administrador/source/repos/https:/https:ro  
-    depends_on:  
-      - postgres  
-    networks:  
-      - Tarefa5-rede  
-  
-  academia-api:  
-    build:  
-      context: ./Academia.Api  
-      dockerfile: Dockerfile  
-    container_name: academia-container-compose  
-    ports:  
-      - "7162:7162"  
-    environment:  
-      - ASPNETCORE_URLS=https://+:7162  
-      - ASPNETCORE_ENVIRONMENT=Docker  
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx  
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourPassword  
-    volumes:  
-      - C:/Users/Administrador/source/repos/https:/https:ro  
-    depends_on:  
-      - postgres  
-    networks:  
+services:
+  tarefa5-api:
+    build:
+      context: ./Tarefa5 integrando Academia
+      dockerfile: Dockerfile
+    container_name: tarefa5-container-compose
+    ports:
+      - "7213:7213"
+    environment:
+      - ASPNETCORE_URLS=https://+:7213
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=12345
+    volumes:
+      - ./https:/https:ro
+    depends_on:
+      - postgres
+    networks:
+      - Tarefa5-rede
+
+  academia-api:
+    build:
+      context: ./Academia.Api
+      dockerfile: Dockerfile
+    container_name: academia-container-compose
+    ports:
+      - "7162:7162"
+    environment:
+      - ASPNETCORE_URLS=https://+:7162
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=12345
+    volumes:
+      - ./https:/https:ro
+    depends_on:
+      - postgres
+    networks:
       - Tarefa5-rede
 
   postgres:
