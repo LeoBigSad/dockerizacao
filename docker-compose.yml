@@ -1,0 +1,59 @@
+services:  
+  tarefa5-api:  
+    build:  
+      context: ./Tarefa5 integrando Academia  
+      dockerfile: Dockerfile  
+    container_name: tarefa5-container-compose  
+    ports:  
+      - "7213:7213"  
+    environment:  
+      - ASPNETCORE_URLS=https://+:7213  
+      - ASPNETCORE_ENVIRONMENT=Docker  
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx  
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourPassword  
+    volumes:  
+      - C:/Users/Administrador/source/repos/https:/https:ro  
+    depends_on:  
+      - postgres  
+    networks:  
+      - Tarefa5-rede  
+  
+  academia-api:  
+    build:  
+      context: ./Academia.Api  
+      dockerfile: Dockerfile  
+    container_name: academia-container-compose  
+    ports:  
+      - "7162:7162"  
+    environment:  
+      - ASPNETCORE_URLS=https://+:7162  
+      - ASPNETCORE_ENVIRONMENT=Docker  
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx  
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourPassword  
+    volumes:  
+      - C:/Users/Administrador/source/repos/https:/https:ro  
+    depends_on:  
+      - postgres  
+    networks:  
+      - Tarefa5-rede
+
+  postgres:
+    image: postgis/postgis:14-master
+    container_name: postgres-14_1 # Nome fixo do contêiner PostgreSQL
+    ports:
+      - "5432:5432" # Porta padrão do PostgreSQL
+    environment:  
+      POSTGRES_USER: root # Nome do superusuário  
+      POSTGRES_PASSWORD: M1g2m3n44x44 # Senha do superusuário  
+      POSTGRES_DB: postgres # Banco de dados padrão
+    volumes:
+      - postgres-141_data:/var/lib/postgresql/data # Volume para persistência de dados
+    networks:
+      - Tarefa5-rede
+
+networks:
+  Tarefa5-rede:
+    driver: bridge
+
+volumes:
+  postgres-141_data: {}

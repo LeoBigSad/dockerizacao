@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tarefa5.Data.Postgres\Tarefa5.Data.Postgres.csproj" />
+    <ProjectReference Include="..\Tarefa5.Domain\Tarefa5.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
